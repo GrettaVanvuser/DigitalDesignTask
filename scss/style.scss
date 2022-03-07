@@ -1,0 +1,543 @@
+@import "_nullstyle";
+@import "_adaptive";
+@import "_header";
+@import "_form";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap');
+
+$manrope: 'Manrope', sans-serif;
+$inter: 'Inter', sans-serif;
+$color1: #d7d1f8;
+$colorOrang: #FF6F73;
+$color-black: #000000;
+$padding: calc(10px + 30 * (100vw / 2560)) calc(20px + 50 * (100vw / 2560));
+
+header {
+	background-color: $color1;
+}
+
+.head {
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+
+	padding: calc(10px + 30 * (100vw / 2560)) calc(20px + 50 * (100vw / 2560));
+
+}
+
+.gh-logo {
+	display: flex;
+	flex-direction: row;
+	justify-content: start;
+	align-items: center;
+
+	border-radius: 20px;
+	margin-right: 50px;
+	padding: 5px;
+
+	transition: all 0.5s;
+
+	cursor: pointer;
+
+	&:hover {
+		background-color: $color-black;
+		border-radius: 20px;
+	}
+
+	
+
+	&__img {
+		display:inline-block;
+		width: calc(10px + 50 * (100vw / 2560));
+		height: calc(10px + 50 * (100vw / 2560));
+		margin-right: calc(3px + 10 * (100vw / 2560));
+
+		transition: all 0.5s;
+
+		&svg{
+			width: calc(10px + 50 * (100vw / 2560));
+			height: calc(10px + 50 * (100vw / 2560));
+		}
+	}
+
+	&__text {
+		display:inline-block;
+
+		font-family: $manrope;
+		font-weight: bold;
+		font-size: calc(3px + 30 * (100vw / 2560));
+		color: $color-black;
+
+		transition: all 0.5s;
+
+	}
+}
+
+.gh-logo:hover .gh-logo__img {
+	filter: invert(100%) sepia(23%) saturate(0%) hue-rotate(194deg) brightness(105%) contrast(103%);
+}
+
+.gh-logo:hover .gh-logo__text {
+	color: #fff;
+}
+
+.menu {
+	font-family: $inter;
+	font-weight: 500;
+	font-size: calc(1px + 23 * (100vw / 2560));
+	background-color: #d7d1f8f1;
+	transition: all 0.5s cubic-bezier(.45,.67,.53,1);
+	z-index: 3;
+
+	@media (max-width: $md2) {
+		position: absolute;
+		left: -100%;
+		top: 0px;
+		width: 100%;
+		height: 100vh;
+		padding: 15px calc(20px + 50 * (100vw / 2560) + 10px + 50 * (100vw / 2560) + 50px) 15px 15px;
+	}
+
+	&_active {
+		left: 0px;
+		position: fixed;
+	}
+
+	&__list {
+		display: flex;
+		justify-content: space-between;
+
+		@media (max-width: $md2) {
+			// display: none;
+			display: flex;
+			flex-direction: column;
+			justify-content: end;
+
+
+			font-size: calc(8px + 20 * (100vw / 2560));
+		}
+	}
+
+	&__item {
+		padding: 10px 10px;
+		border-radius: 30px;
+		margin-right: calc(5px + 30 * (100vw / 2560));
+
+		cursor: pointer;
+		transition: all 0.5s;
+
+		&_active {
+			// display: inline-block;
+			margin-right: 0px;
+			margin-bottom: calc(5px + 30 * (100vw / 2560));
+			// max-width: calc(10px + 300 * (100vw / 993));
+
+			&:last-child {
+				margin-bottom: 0px;
+			}
+		}
+
+		&:hover {
+			background-color: $color-black;
+		}
+
+		&:last-child {
+			margin-right: 0px;
+		}
+
+	}
+
+	&__link {
+		color: $color-black;
+	}
+
+	&__button {
+		position: relative;
+
+		display: none;
+		width: calc(35px + 45 * (100vw / 2560));
+		height: calc(25px + 35 * (100vw / 2560));
+		cursor: pointer;
+		z-index: 7;
+
+		@media (max-width: $md2) {display: block;}
+	}
+
+	&__icon {
+		position: absolute;
+
+		display: none;
+		top: 10px;
+		left: 10px;
+		width: calc(20px + 30 * (100vw / 2560));
+		height: calc(10px + 20 * (100vw / 2560));
+		display: inline-block;
+		cursor: pointer;
+
+		span,
+		&::before,
+		&::after {
+			right: 0;
+			border-radius: 3px;
+			position: absolute;
+			height: 20%;
+			width: 100%;
+			transition: all 0.3s ease 0s;
+			background-color: $color-black;
+			z-index: 2;
+		}
+
+		&::before,
+		&::after {
+			content: "";
+		}
+
+		&::before {
+			top: 0;
+		}
+	
+		&::after {
+			bottom: 0;
+		}
+	
+		span {
+			top: 50%;
+			transform: scale(1) translate(0px, -50%);
+		}
+
+		&_active {
+
+			span {
+				transform: scale(0) translate(0px, -50%);
+			}
+			
+			&::before {
+				top: 50%;
+				transform: rotate(-45deg) translate(0.5px, -50%);
+			}
+
+			&::after {
+				bottom: 50%;
+				transform: rotate(45deg) translate(0.5px, 50%);
+			}
+		}
+	}
+}
+
+.menu__item:hover .menu__link {
+	color: #fff;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+.welcome {
+	// background-color: $color1;
+	background: $color1;
+	height: 100%; 
+	width: auto; 
+	position: relative;
+
+	margin-bottom: calc(60px + 150 * (100vw / 2560));
+
+	&:after {
+		content: "";
+		height: 30%; 
+		width: 100%;
+		position: absolute; 
+		bottom: -20%;
+		background: $color1;
+		transform: skew(0deg, -2deg);
+		z-index: -3;
+		}
+
+	&__content {
+		display: flex;
+		justify-content: space-around;
+		padding: calc(10px + 30 * (100vw / 2560)) calc(20px + 50 * (100vw / 2560));
+	}
+
+	&__text {
+		max-width: 800px;
+		margin-right: 20px;
+		@media (max-width: $md3) {
+			margin-right: 0px;
+		}
+	}
+
+	&__h {
+		margin-bottom: calc(10px + 90 * (100vw / 2560));
+
+		font-family: $manrope;
+		font-style: normal;
+		font-weight: bold;
+		font-size: calc(30px + 50 * (100vw / 2560));
+
+		color: $color-black;
+
+		@media (max-width: $md3) {
+			text-align: center;
+		}
+	}
+
+	&__description {
+		font-family: $inter;
+		font-style: normal;
+		font-weight: normal;
+		font-size: calc(8px + 20 * (100vw / 2560));
+		line-height: calc(7px + 40 * (100vw / 2560));
+
+		color: $color-black;
+	}
+
+	&__decoration {
+		// padding-left: 20px;
+		@media (max-width: $md3) {
+			display: none;
+		}
+
+	}
+
+	&__image {
+		border-radius: 50%;
+		box-shadow: 20px 20px #FF6F73, -10px -10px .8em #0A0653;
+		display: flex;
+		align-items: flex-start;
+		min-width: 50%;
+		@media (max-width: $md2) {
+			margin: 20px 0px;
+		}
+
+		img {
+			border-radius: 50%;
+			max-width: 100%;
+		}
+	}
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+
+.databox {
+	position: absolute;
+	bottom: calc(-60px -80 * (100vw / 2560));
+	left: calc(10px + 40 * (100vw / 2560));
+	background-color: #fff;
+	border-radius: 20px;
+	padding: 10px;
+
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+
+	&__box {
+		margin-bottom: 10px;
+	}
+
+	&__date {
+		margin: 0px 0px 0px 10px;
+	}
+
+}
+
+.input {
+	padding: 0px;
+}
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+.h {
+	margin-bottom: calc(10px + 50 * (100vw / 2560));
+
+	font-family: $manrope;
+	font-style: normal;
+	font-size: calc(20px + 40 * (100vw / 2560));
+	line-height: calc(25px + 45 * (100vw / 2560));;
+
+	color: $color-black;
+
+	&_2 {
+		font-weight: 600;
+	}
+
+	&_3 {
+		font-weight: normal;
+		margin-bottom: calc(8px + 30 * (100vw / 2560));
+	}
+
+	&_4 {
+		font-weight: 400;
+		font-size: calc(15px + 30 * (100vw / 2560));
+		margin-bottom: calc(8px + 30 * (100vw / 2560));
+	}
+}
+
+.text {
+	font-family: $inter;
+	font-style: normal;
+	font-weight: normal;
+	font-size: calc(8px + 20 * (100vw / 2560));
+	line-height: calc(7px + 40 * (100vw / 2560));
+	margin: 0px 0px 0px 0px;
+
+	color: $color-black;
+}
+
+.list {
+	padding: 30px  30px  0px  30px;
+
+	&__item {
+		list-style: circle;
+		margin-bottom: 10px;
+		&:last-child {
+			margin-bottom: 0px;
+		}
+
+		&_ol {
+			list-style: decimal;
+		}
+	}
+}
+
+.img {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	min-width: 50%;
+	@media (max-width: $md2) {
+		margin: 20px 0px;
+	}
+
+	img {
+		max-width: 100%;
+	}
+}	
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+.system {
+	padding: $padding;
+
+	&__block {
+		display: flex;
+		flex-direction: row;
+
+		margin-bottom: 50px;
+		@media (max-width: $md2) {
+			margin-bottom: 10px;
+		}
+
+		@media (max-width: $md2) {
+			flex-direction: column;
+		}
+
+		&_3{
+			flex-direction: column;
+		}
+
+		&_4{
+			flex-direction: column;
+		}
+	}
+
+
+	&__text {
+		font-family: $inter;
+		font-style: normal;
+		font-weight: normal;
+		font-size: calc(8px + 20 * (100vw / 2560));
+		line-height: calc(7px + 40 * (100vw / 2560));
+		margin: 0px 35px 0px 0px;
+
+		color: $color-black;
+
+		@media (max-width: $md2) {
+			margin: 0px 0px;
+		}
+
+		&_another{
+			margin: 0px 0px 0px 0px;
+		}
+	}
+	&__img {
+		&_another {
+			margin: 20px 0px;
+			min-width: 100%;
+		}
+	}
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+.aspects {
+	padding: $padding;
+	background-color: $colorOrang;
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+.manag {
+	padding: $padding;
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+.stream {
+	padding: $padding ;
+	&__list {
+		margin-bottom: 30px;
+	}
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+
+.messages {
+	padding: $padding;
+
+	&__block {
+		display: flex;
+		flex-direction: row;
+
+		margin-bottom: 50px;
+		@media (max-width: $md2) {
+			margin-bottom: 10px;
+		}
+
+		@media (max-width: $md2) {
+			flex-direction: column;
+		}
+	}
+
+	&__text {
+		margin-bottom: calc(8px + 30 * (100vw / 2560));
+	}
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+.theEnd {
+	padding: $padding;
+	background-color: #d7d1f8;
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+
+.footer {
+	padding: $padding;
+	background-color: #d7d1f8;
+
+	&__text{
+		text-align: center;
+		color: #fff;
+	}
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+
+.arrow-top {
+	opacity: 0.5;
+	right: 30px;
+	top: 70%;
+	position:fixed;
+	z-index: 5;
+	height: calc(30px + 60 * (100vw / 2560));
+	width: calc(30px + 60 * (100vw / 2560));
+	padding: calc(8px + 15 * (100vw / 2560));
+	background-color: #d7d1f8;
+	border-radius: 50%;
+
+	&:hover {
+		opacity: 1;
+	}
+}
