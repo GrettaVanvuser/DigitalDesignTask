@@ -1,2 +1,2 @@
 # DigitalDesignTask 
-https://GrettaVanvuser.github.io/DigitalDesignTask/
+https://GrettaVanvuser.github.io/DigitalDesignTask/index.html
